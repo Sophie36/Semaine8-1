@@ -1,35 +1,26 @@
-/* 
-Activité : jeu de devinette
-*/
-
-// NE PAS MODIFIER OU SUPPRIMER LES LIGNES CI-DESSOUS
-// COMPLETEZ LE PROGRAMME UNIQUEMENT APRES LE TODO
-
-console.log("Bienvenue dans ce jeu de devinette !");
-
-// Cette ligne génère aléatoirement un nombre entre 1 et 100
+console.log;
 var solution = Math.floor(Math.random() * 100) + 1;
 
-// Décommentez temporairement cette ligne pour mieux vérifier le programme
-//console.log("(La solution est " + solution + ")");
+console.log("(La solution est " + solution + ")");
 
-// TODO : complétez le programme
+var proposition = -1; // Valeur initiale forcément fausse
+var numeroEssai = 0;
 
-$proposition = document.getElementById("proposition");
-$bouton = document.getElementById("bouton");
-$resultat = document.getElementById("resultat");
-reponse = Math.ceil(Math.random() * 100)
-
-function verifier() {
-    if ($proposition.value < reponse) {
-        $resultat.innerHTML = "Insuffisant !";
-    }
-    if ($proposition.value == reponse) {
-        $resultat.innerHTML = "Juste ce qu'il faut";
-    }
-    if ($proposition.value > reponse) {
-        $resultat.innerHTML = "Trop !";
+// Le jeu continue tant que la proposition est incorrecte 
+// et que le nombre maximal d'essais (6) n'est pas atteint
+while ((proposition !== solution) && (numeroEssai < 6)) {
+    numeroEssai++;
+    proposition = Number(prompt("Entrez votre proposition " + numeroEssai + " :"));
+    if (proposition < solution) {
+        console.log(proposition + " est trop petit");
+    } else if (proposition > solution) {
+        console.log(proposition + " est trop grand");
     }
 }
-
-$bouton.onclick = verifier;
+// Ici, soit le joueur a trouvé la solution, soit le nombre d'essais est dépassé
+if (proposition === solution) {
+    console.log("Bravo ! La solution était " + solution);
+    console.log("Vous avez trouvé en " + numeroEssai + " essai(s)");
+} else {
+    console.log("Perdu... La solution était " + solution);
+}
